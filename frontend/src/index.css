@@ -1,0 +1,58 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@theme {
+  --color-primary-50: #f4f6fe;
+  --color-primary-100: #e9edfe;
+  --color-primary-200: #d7dffd;
+  --color-primary-300: #b8c6fa;
+  --color-primary-400: #94a5f6;
+  --color-primary-500: #6d7df1;
+  --color-primary-600: #5460e7;
+  --color-primary-700: #434cd1;
+  --color-primary-800: #373ea9;
+  --color-primary-900: #313788;
+
+  --color-dark-50: #f6f6f7;
+  --color-dark-100: #eef0f2;
+  --color-dark-200: #d9dde3;
+  --color-dark-300: #b7bfc9;
+  --color-dark-400: #8e9aa8;
+  --color-dark-500: #6f7c8d;
+  --color-dark-600: #596575;
+  --color-dark-700: #4a5360;
+  --color-dark-800: #3f4651;
+  --color-dark-900: #1e293b;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  @apply bg-slate-50 text-slate-900 antialiased min-h-screen;
+}
+
+/* Premium UI Glassmorphism cards */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.glass-panel-dark {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Custom Scrollbar for modern visual premium layout */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded-full hover:bg-slate-400 transition-colors;
+}
