@@ -48,19 +48,19 @@ const uploadStream = (buffer, options = {}) => {
  * @param {string} filename - Desired filename.
  * @returns {Promise<string>} - The URL of the stored PDF file.
  */
-export const uploadPDF = async (buffer, filename) => {
-  if (isCloudinaryConfigured()) {
-    try {
-      console.log('Uploading PDF to Cloudinary...');
-      return await uploadStream(buffer, {
-        resource_type: 'raw', // Raw for PDF documents
-        public_id: `certificates/${path.parse(filename).name}`,
-        access_mode: 'public'
-      });
-    } catch (err) {
-      console.error('Cloudinary PDF upload failed, falling back to local storage:', err.message);
-    }
+export const uploadQRCode = async (buffer, certificateId) => {
+  if (!isCloudinaryConfigured()) {
+    throw new Error('Cloudinary is not configured');
   }
+
+  console.log('Uploading QR Code to Cloudinary...');
+
+  return await uploadStream(buffer, {
+    resource_type: 'image',
+    folder: 'qrcodes',
+    public_id: certificateId
+  });
+};
 
   // Fallback to local storage
   console.log('Using local storage for PDF...');
@@ -76,7 +76,7 @@ export const uploadPDF = async (buffer, filename) => {
   // Return local file URL
   const port = process.env.PORT || 5000;
   return `http://localhost:${port}/uploads/${safeFilename}`;
-};
+
 
 /**
  * Uploads a QR code image to storage.
